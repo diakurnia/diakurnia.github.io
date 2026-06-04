@@ -73,7 +73,7 @@
           <div class="journey-item">
             <div class="journey-dot"></div>
             <div class="journey-content">
-              <span class="journey-year">2021 – 2024</span>
+              <span class="journey-year">2021 – Now</span>
               <strong>Data Analyst</strong>
               <p>SQL, Python, data pipelines, business reporting, ad-hoc analysis</p>
             </div>
@@ -81,7 +81,7 @@
           <div class="journey-item">
             <div class="journey-dot active"></div>
             <div class="journey-content">
-              <span class="journey-year">2024 – Now</span>
+              <span class="journey-year">2026 – Now</span>
               <strong>AI & Automation Engineer</strong>
               <p>n8n workflows, AI agents, Telegram bots, API integrations, production deployment</p>
             </div>
@@ -148,120 +148,67 @@
       <div class="section-label">Projects</div>
       <h2 class="section-title">Recent work</h2>
 
-      <!-- Project 1 -->
-      <div class="project-card featured">
-        <div class="project-meta">
-          <span class="project-tag">n8n · Telegram · Claude AI</span>
-          <span class="project-badge">Featured</span>
-        </div>
-        <div class="project-body">
-          <div class="project-info">
-            <h3>Wellness Coach Buddy</h3>
-            <p class="project-desc">
-              An AI-powered personal wellness coach delivered entirely through Telegram, built as a
-              single n8n workflow. The bot sends proactive morning and evening check-ins, responds to
-              on-demand messages 24/7, and automatically tracks weekly exercise habits through
-              keyword detection — all without any app to install.
-            </p>
-            <div class="project-highlights">
-              <div class="highlight">
-                <strong>30</strong>
-                <span>Nodes</span>
-              </div>
-              <div class="highlight">
-                <strong>3</strong>
-                <span>AI Agents</span>
-              </div>
-              <div class="highlight">
-                <strong>Live</strong>
-                <span>Production</span>
-              </div>
-            </div>
-            <ul class="project-features">
-              <li>☀️ Automated morning & evening check-ins (cron scheduling)</li>
-              <li>🏋️ Exercise keyword detection + deduplication logging</li>
-              <li>📊 Weekly progress tracking with 4x/week goal nudges</li>
-              <li>🧠 3 Claude agents with 10-turn conversational memory</li>
-            </ul>
-            <div class="project-links">
-              <a href="https://github.com/diakurnia/wellness-coach-buddy" target="_blank" class="btn-primary">View on GitHub</a>
-            </div>
-          </div>
-          <div class="project-visual">
-            <div class="workflow-diagram">
-              <div class="wd-node trigger">Telegram<br>Trigger</div>
-              <div class="wd-arrow">→</div>
-              <div class="wd-node logic">Keyword<br>Check</div>
-              <div class="wd-arrow">→</div>
-              <div class="wd-node ai">Claude<br>Agent</div>
-              <div class="wd-arrow">→</div>
-              <div class="wd-node output">Telegram<br>Reply</div>
-              <div class="wd-row2">
-                <div class="wd-node trigger">Schedule<br>7AM / 9PM</div>
-                <div class="wd-arrow">→</div>
-                <div class="wd-node logic">Exercise<br>Count</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="projects-columns">
 
-      <!-- Project 2 -->
-      <div class="project-card">
-        <div class="project-meta">
-          <span class="project-tag">Google Apps Script · Claude AI · Gmail API</span>
-        </div>
-        <div class="project-body">
-          <div class="project-info">
-            <h3>Partnership Outreach Automation</h3>
-            <p class="project-desc">
-              An end-to-end email outreach automation system built inside Google Sheets. It monitors
-              funding calls and tender opportunities, matches them to partner profiles, generates
-              personalised outreach emails via Claude AI, routes them through a human approval step,
-              then sends, tracks replies, and handles follow-ups automatically.
-            </p>
-            <ul class="project-features">
-              <li>📧 AI-generated personalised emails via Claude API</li>
-              <li>✅ Human-in-the-loop approval before sending</li>
-              <li>🔄 Automated follow-ups at day 7 and day 14</li>
-              <li>📬 Reply detection, contact cooldown & Do Not Contact enforcement</li>
-              <li>📋 Complete error logging with row references</li>
-            </ul>
-            <div class="project-links">
-              <a href="https://github.com/diakurnia/partnership-outreach-automation" target="_blank" class="btn-primary">View on GitHub</a>
+        <!-- Left: Data Analytics -->
+        <div class="projects-col">
+          <div class="project-col-header analytics">
+            <span>📊</span> Data Analytics
+          </div>
+          <div class="project-col-body analytics">
+            <div class="project-card-compact">
+              <div class="project-meta">
+                <span class="project-tag">Python · Pandas · Data Analysis</span>
+              </div>
+              <h3>Subscription Digital Analysis</h3>
+              <p class="project-desc">
+                End-to-end analytics project — multi-source data reconciliation, customer segmentation,
+                revenue analysis, dan 6-sheet Excel report output.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/diakurnia/subscription-analysis" target="_blank" class="btn-primary">View on GitHub</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Project 3 -->
-      <div class="project-card">
-        <div class="project-meta">
-          <span class="project-tag">Python · Pandas · Data Analysis</span>
-        </div>
-        <div class="project-body">
-          <div class="project-info">
-            <h3>Subscription Digital Analysis</h3>
-            <p class="project-desc">
-              An end-to-end data analytics project on a digital subscription platform — from messy
-              multi-source data through cleaning and normalization, to behavioral segmentation and
-              actionable business insights. Reconciles customer data from two separate systems (CRM
-              and activity tracker) with different ID formats.
-            </p>
-            <ul class="project-features">
-              <li>🔗 Multi-source data reconciliation with regex ID normalization</li>
-              <li>👥 Customer segmentation across 5 product categories</li>
-              <li>💰 Revenue analysis with ARPU & z-score risk identification</li>
-              <li>📈 Monthly trend analysis (Jan 2023–Jun 2024)</li>
-              <li>📊 6-sheet Excel report + executive summary output</li>
-            </ul>
-            <div class="project-links">
-              <a href="https://github.com/diakurnia/subscription-analysis" target="_blank" class="btn-primary">View on GitHub</a>
+        <!-- Right: Automation -->
+        <div class="projects-col">
+          <div class="project-col-header automation">
+            <span>⚡</span> Automation
+          </div>
+          <div class="project-col-body automation">
+            <div class="project-card-compact featured">
+              <div class="project-meta">
+                <span class="project-tag">n8n · Telegram · Claude AI</span>
+                <span class="project-badge">Featured</span>
+              </div>
+              <h3>Wellness Coach Buddy</h3>
+              <p class="project-desc">
+                AI wellness coach via Telegram — 30 nodes, 3 Claude agents, proactive morning &amp;
+                evening check-ins, dan live production deployment.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/diakurnia/wellness-coach-buddy" target="_blank" class="btn-primary">View on GitHub</a>
+              </div>
+            </div>
+            <div class="project-card-compact">
+              <div class="project-meta">
+                <span class="project-tag">Google Apps Script · Claude AI · Gmail API</span>
+              </div>
+              <h3>Partnership Outreach Automation</h3>
+              <p class="project-desc">
+                End-to-end email outreach automation — AI-generated emails, human approval step,
+                automated follow-ups hari ke-7 &amp; ke-14, reply detection, dan error logging.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/diakurnia/partnership-outreach-automation" target="_blank" class="btn-primary">View on GitHub</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </section>
 
