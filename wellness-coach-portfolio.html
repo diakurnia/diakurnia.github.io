@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wellness Coach Buddy — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1E2235;
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 48px 56px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .header { border-bottom: 2px solid #1E2235; padding-bottom: 20px; margin-bottom: 28px; }
+    .header-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5B7CFA; margin-bottom: 8px; }
+    .header h1 { font-size: 26px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+    .header-sub { font-size: 13px; color: #6B7280; max-width: 560px; }
+    .header-meta { display: flex; gap: 20px; margin-top: 14px; flex-wrap: wrap; }
+    .meta-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #6B7280; }
+    .meta-item strong { color: #1E2235; font-weight: 600; }
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { font-size: 10px; font-weight: 600; background: #EEF2FF; color: #4F6EF7; padding: 3px 10px; border-radius: 20px; }
+    .section { margin-bottom: 28px; }
+    .section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5B7CFA; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #E8EAF0; }
+    .overview p { color: #374151; line-height: 1.8; margin-bottom: 10px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .feature-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: #374151; }
+    .feature-list li::before { content: '✓'; color: #5B7CFA; font-weight: 700; font-size: 11px; margin-top: 2px; flex-shrink: 0; }
+    .workflow { display: flex; flex-direction: column; gap: 0; }
+    .workflow-step { display: flex; gap: 14px; align-items: flex-start; position: relative; padding-bottom: 14px; }
+    .workflow-step:last-child { padding-bottom: 0; }
+    .step-num { width: 22px; height: 22px; border-radius: 50%; background: #5B7CFA; color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .workflow-step:not(:last-child) .step-num::after { content: ''; position: absolute; left: 10px; top: 24px; bottom: 0; width: 1.5px; background: #E8EAF0; }
+    .step-content strong { display: block; font-size: 12.5px; font-weight: 600; color: #1E2235; margin-bottom: 2px; }
+    .step-content span { font-size: 12px; color: #6B7280; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .stat-card { background: #F8F9FC; border: 1px solid #E8EAF0; border-radius: 8px; padding: 12px 14px; text-align: center; }
+    .stat-card .value { font-size: 20px; font-weight: 700; color: #5B7CFA; }
+    .stat-card .label { font-size: 10.5px; color: #6B7280; margin-top: 3px; line-height: 1.4; }
+    .tech-table { width: 100%; border-collapse: collapse; }
+    .tech-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #9CA3AF; padding: 6px 10px; background: #F8F9FC; border: 1px solid #E8EAF0; }
+    .tech-table td { padding: 8px 10px; font-size: 12px; color: #374151; border: 1px solid #E8EAF0; vertical-align: top; }
+    .tech-table td:first-child { font-weight: 600; color: #1E2235; width: 160px; }
+    .trigger-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .trigger-card { background: #F8F9FC; border: 1px solid #E8EAF0; border-radius: 8px; padding: 10px 12px; }
+    .trigger-card .fn { font-size: 11px; font-weight: 600; color: #1E2235; margin-bottom: 3px; }
+    .trigger-card .freq { font-size: 10.5px; color: #5B7CFA; font-weight: 500; }
+    .arch-note { background: #F0F9FF; border-left: 3px solid #0284C7; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 12.5px; color: #374151; }
+    .arch-note strong { color: #0284C7; }
+    .cost-note { background: #F0FDF4; border-left: 3px solid #16A34A; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 12.5px; color: #374151; margin-top: 10px; }
+    .cost-note strong { color: #16A34A; }
+    .footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid #E8EAF0; display: flex; justify-content: space-between; align-items: center; }
+    .footer span { font-size: 11px; color: #9CA3AF; }
+    .footer a { font-size: 11px; color: #5B7CFA; text-decoration: none; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-tag">Portfolio · AI & Automation Engineering</div>
+    <h1>Wellness Coach Buddy</h1>
+    <p class="header-sub">
+      An AI-powered personal wellness coach delivered through Telegram — proactive daily check-ins,
+      24/7 on-demand support, and automated exercise tracking, all in a single n8n workflow.
+    </p>
+    <div class="header-meta">
+      <div class="meta-item"><strong>Platform:</strong> n8n Cloud + Telegram</div>
+      <div class="meta-item"><strong>Status:</strong> Live Production</div>
+      <div class="meta-item"><strong>Cost:</strong> ~$2/month</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag">n8n</span>
+      <span class="tag">Claude Sonnet 4.6</span>
+      <span class="tag">Telegram Bot API</span>
+      <span class="tag">n8n Data Tables</span>
+    </div>
+  </div>
+
+  <div class="section overview">
+    <div class="section-title">Overview</div>
+    <p>
+      Most wellness apps fail because they require behavior change before delivering value — users must
+      remember to open them. Wellness Coach Buddy flips this by meeting users where they already are:
+      Telegram. No app to install, no new habits to form.
+    </p>
+    <p>
+      Built as a single n8n workflow with dual trigger paths, the bot proactively sends morning and
+      evening check-ins on a schedule, responds to on-demand messages 24/7, and automatically logs
+      exercise habits through keyword detection — all powered by three specialized Claude agents with
+      10-turn conversation memory.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Project Stats</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="value">30</div>
+        <div class="label">Nodes in workflow</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">3</div>
+        <div class="label">Specialized Claude agents</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">10</div>
+        <div class="label">Turn memory per agent</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">Live</div>
+        <div class="label">Production deployment</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">How It Works</div>
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Dual Trigger Paths</strong>
+          <span>Schedule triggers fire at 7:00 AM (morning check-in) and 9:00 PM (evening reflection). A separate webhook trigger activates when the user sends a message.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Central Switch Router</strong>
+          <span>Both paths converge at a Switch node that routes traffic to the appropriate agent — morning, evening, or on-demand — based on trigger source and time.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>AI Agent Processing</strong>
+          <span>Each Claude Sonnet agent maintains a 10-turn conversation window. The on-demand agent also scans messages for exercise keywords to log workout activity.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Exercise Tracking & Deduplication</strong>
+          <span>Detected exercise logs are written to n8n Data Tables with deduplication logic to prevent double-counting the same workout within a session.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Weekly Progress Nudges</strong>
+          <span>The system tracks against a 4x/week exercise goal and surfaces progress during evening check-ins to maintain accountability.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="section">
+      <div class="section-title">Key Features</div>
+      <ul class="feature-list">
+        <li>Proactive morning & evening check-ins</li>
+        <li>24/7 on-demand AI responses</li>
+        <li>Exercise keyword detection & logging</li>
+        <li>Deduplication for workout entries</li>
+        <li>Weekly progress tracking (4x/week goal)</li>
+        <li>10-turn conversation memory per agent</li>
+        <li>Zero external dependencies</li>
+        <li>No app installation required</li>
+      </ul>
+    </div>
+    <div class="section">
+      <div class="section-title">Tech Stack</div>
+      <table class="tech-table">
+        <thead><tr><th>Layer</th><th>Technology</th></tr></thead>
+        <tbody>
+          <tr><td>Orchestration</td><td>n8n Cloud</td></tr>
+          <tr><td>AI model</td><td>Claude Sonnet 4.6</td></tr>
+          <tr><td>Interface</td><td>Telegram Bot API</td></tr>
+          <tr><td>Storage</td><td>n8n Data Tables</td></tr>
+          <tr><td>Memory</td><td>Window Buffer Memory</td></tr>
+          <tr><td>Scheduling</td><td>n8n Schedule triggers</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Architecture Notes</div>
+    <div class="arch-note">
+      <strong>Single workflow design.</strong> The entire system — scheduling, routing, AI processing, data persistence,
+      and delivery — runs as one n8n workflow. Two independent trigger paths converge at a central Switch router,
+      keeping the architecture simple and the execution path predictable.
+    </div>
+    <div class="cost-note">
+      <strong>~$2/month to run.</strong> n8n self-hosted is free. Claude API usage for personal coaching conversations
+      costs approximately $1–2/month, making this a near-zero-cost production system.
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Dia Kurnia Dewi · AI & Automation Engineering Portfolio</span>
+    <a href="https://github.com/diakurnia/wellness-coach-buddy" target="_blank">github.com/diakurnia/wellness-coach-buddy</a>
+  </div>
+
+</body>
+</html>
