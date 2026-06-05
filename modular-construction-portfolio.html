@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modular Construction AI Automation — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1E2235;
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 48px 56px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .header { border-bottom: 2px solid #1E2235; padding-bottom: 20px; margin-bottom: 28px; }
+    .header-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5B7CFA; margin-bottom: 8px; }
+    .header h1 { font-size: 26px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+    .header-sub { font-size: 13px; color: #6B7280; max-width: 560px; }
+    .header-meta { display: flex; gap: 20px; margin-top: 14px; flex-wrap: wrap; }
+    .meta-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #6B7280; }
+    .meta-item strong { color: #1E2235; font-weight: 600; }
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { font-size: 10px; font-weight: 600; background: #EEF2FF; color: #4F6EF7; padding: 3px 10px; border-radius: 20px; }
+    .section { margin-bottom: 28px; }
+    .section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5B7CFA; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #E8EAF0; }
+    .overview p { color: #374151; line-height: 1.8; margin-bottom: 10px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .feature-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: #374151; }
+    .feature-list li::before { content: '✓'; color: #5B7CFA; font-weight: 700; font-size: 11px; margin-top: 2px; flex-shrink: 0; }
+    .workflow { display: flex; flex-direction: column; gap: 0; }
+    .workflow-step { display: flex; gap: 14px; align-items: flex-start; position: relative; padding-bottom: 14px; }
+    .workflow-step:last-child { padding-bottom: 0; }
+    .step-num { width: 22px; height: 22px; border-radius: 50%; background: #5B7CFA; color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .workflow-step:not(:last-child) .step-num::after { content: ''; position: absolute; left: 10px; top: 24px; bottom: 0; width: 1.5px; background: #E8EAF0; }
+    .step-content strong { display: block; font-size: 12.5px; font-weight: 600; color: #1E2235; margin-bottom: 2px; }
+    .step-content span { font-size: 12px; color: #6B7280; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat-card { background: #F8F9FC; border: 1px solid #E8EAF0; border-radius: 8px; padding: 12px 14px; text-align: center; }
+    .stat-card .value { font-size: 20px; font-weight: 700; color: #5B7CFA; }
+    .stat-card .label { font-size: 10.5px; color: #6B7280; margin-top: 3px; line-height: 1.4; }
+    .tech-table { width: 100%; border-collapse: collapse; }
+    .tech-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #9CA3AF; padding: 6px 10px; background: #F8F9FC; border: 1px solid #E8EAF0; }
+    .tech-table td { padding: 8px 10px; font-size: 12px; color: #374151; border: 1px solid #E8EAF0; vertical-align: top; }
+    .tech-table td:first-child { font-weight: 600; color: #1E2235; width: 140px; }
+    .agents-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+    .agents-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #9CA3AF; padding: 6px 10px; background: #F8F9FC; border: 1px solid #E8EAF0; }
+    .agents-table td { padding: 9px 10px; font-size: 12px; color: #374151; border: 1px solid #E8EAF0; vertical-align: top; }
+    .agents-table td:first-child { font-weight: 700; color: #5B7CFA; width: 72px; white-space: nowrap; }
+    .agents-table td:nth-child(2) { font-weight: 600; color: #1E2235; width: 130px; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+    .badge-live { background: #DCFCE7; color: #16A34A; }
+    .badge-planned { background: #F1F5F9; color: #94A3B8; }
+    .challenge-table { width: 100%; border-collapse: collapse; }
+    .challenge-table td { padding: 9px 12px; font-size: 12px; border: 1px solid #E8EAF0; vertical-align: top; }
+    .challenge-table td:first-child { font-weight: 600; color: #1E2235; width: 55%; background: #F8F9FC; }
+    .challenge-table td:last-child { color: #DC2626; font-style: italic; }
+    .arch-note { background: #F0F9FF; border-left: 3px solid #0284C7; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 12.5px; color: #374151; }
+    .arch-note strong { color: #0284C7; }
+    .hitl-note { background: #F0FDF4; border-left: 3px solid #16A34A; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 12.5px; color: #374151; margin-top: 10px; }
+    .hitl-note strong { color: #16A34A; }
+    .roadmap-col { display: flex; flex-direction: column; gap: 6px; }
+    .roadmap-col .roadmap-title { font-size: 12px; font-weight: 700; color: #1E2235; margin-bottom: 4px; }
+    .roadmap-col ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .roadmap-col ul li { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #374151; }
+    .roadmap-col ul li::before { content: '→'; color: #9CA3AF; font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+    .footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid #E8EAF0; display: flex; justify-content: space-between; align-items: center; }
+    .footer span { font-size: 11px; color: #9CA3AF; }
+    .footer a { font-size: 11px; color: #5B7CFA; text-decoration: none; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-tag">Portfolio · AI & Automation Engineering</div>
+    <h1>Modular Construction<br>Lead-to-Proposal System</h1>
+    <p class="header-sub">
+      An end-to-end AI pipeline that scores inbound leads and drafts client proposals automatically —
+      so your team focuses on building, not admin.
+    </p>
+    <div class="header-meta">
+      <div class="meta-item"><strong>Industry:</strong> Modular Construction (NZ)</div>
+      <div class="meta-item"><strong>Agents Live:</strong> 2 of 4</div>
+      <div class="meta-item"><strong>Date:</strong> June 2026</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag">n8n Cloud</span>
+      <span class="tag">Claude Sonnet 4.6</span>
+      <span class="tag">Supabase</span>
+      <span class="tag">Airtable</span>
+      <span class="tag">Telegram Bot</span>
+      <span class="tag">Google Forms</span>
+    </div>
+  </div>
+
+  <div class="section overview">
+    <div class="section-title">Overview</div>
+    <p>
+      A growing modular construction company — with flagship projects like the Wellington Temporary Ferry Terminal
+      for Interislander — was losing valuable time on repetitive sales and admin tasks. Sales teams manually reviewed
+      every inbound lead, proposal writing took days, and hot leads went cold due to slow response times.
+    </p>
+    <p>
+      This project delivers a 4-agent AI automation stack built on Claude + n8n + Supabase. Every agent drafts —
+      every output requires human approval before reaching a client. The system handles the repetitive cognitive
+      work; the team handles judgement and relationships.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Key Metrics</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="value">&lt; 2 min</div>
+        <div class="label">Lead scored after form submission</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">~80%</div>
+        <div class="label">Reduction in proposal drafting time</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">2 / 4</div>
+        <div class="label">Agents live in production</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Challenge</div>
+    <table class="challenge-table">
+      <tbody>
+        <tr>
+          <td>Sales team manually reviewed every inbound lead</td>
+          <td>→ Hours lost triaging low-value enquiries</td>
+        </tr>
+        <tr>
+          <td>Proposal writing took days per opportunity</td>
+          <td>→ Inconsistent quality, missed scope items</td>
+        </tr>
+        <tr>
+          <td>No visibility into which leads needed urgent follow-up</td>
+          <td>→ Hot leads going cold due to slow response</td>
+        </tr>
+        <tr>
+          <td>Post-sales admin consumed project manager time</td>
+          <td>→ Delayed invoices, missed variation claims</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The 4-Agent System</div>
+    <table class="agents-table">
+      <thead>
+        <tr><th>Agent</th><th>Name</th><th>What it does</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Agent 1</td>
+          <td>Lead Scoring</td>
+          <td>Scores inbound leads 0–100 against ICP within 2 minutes of form submission. Posts result to Telegram with recommended next action. Saves to Supabase.</td>
+          <td><span class="badge badge-live">Live</span></td>
+        </tr>
+        <tr>
+          <td>Agent 2</td>
+          <td>Proposal Drafting</td>
+          <td>Auto-triggered when a lead scores "hot". Drafts full client proposals using a RAG scope library (5 templates) and project history. Outputs structured draft to Telegram for review.</td>
+          <td><span class="badge badge-live">Live</span></td>
+        </tr>
+        <tr>
+          <td>Agent 3</td>
+          <td>Post-Sales Ops</td>
+          <td>Daily digest across 3 Airtable tables. Drafts client status updates, supplier POs, council RFI responses, and invoice follow-ups. All queued for approval.</td>
+          <td><span class="badge badge-planned">Planned</span></td>
+        </tr>
+        <tr>
+          <td>Agent 4</td>
+          <td>PM Daily Brief</td>
+          <td>Morning digest of all active projects enriched with live Wellington weather data. Flags missed variation claims and milestone billing before they slip.</td>
+          <td><span class="badge badge-planned">Planned</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">How It Works — End to End</div>
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Lead submits Google Form</strong>
+          <span>Prospect fills out a lead intake form. Response auto-syncs to Google Sheets, triggering Agent 1 within 1 minute.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Agent 1 scores the lead</strong>
+          <span>Claude Sonnet 4.6 (temp: 0.1) evaluates the lead against ICP criteria — industry, project value, location, urgency — and outputs a score 0–100 with tier (hot/warm/cold) and recommended action. Result saved to Supabase.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Telegram notification to team</strong>
+          <span>The score, tier, and recommended next action are posted to the team's Telegram channel for immediate review. No lead goes unseen.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Hot leads trigger Agent 2 (fire-and-forget)</strong>
+          <span>If tier = hot, Agent 1 triggers Agent 2 as a sub-workflow without waiting. Agent 2 pulls 5 scope templates from an n8n Data Table (RAG pattern), aggregates them into a proposal context, and sends to Claude.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Proposal draft delivered to Telegram</strong>
+          <span>The full structured proposal draft — executive summary, scope, pricing range, timeline, next steps — lands in Telegram for PM review before any client contact.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Architecture Notes</div>
+    <div class="arch-note">
+      <strong>Sub-workflow orchestration.</strong> Agent 2 runs as a separate n8n workflow triggered by Agent 1 with
+      <code>waitForSubWorkflow: false</code> — keeping Agent 1 fast and non-blocking while Agent 2 handles the heavier
+      proposal drafting asynchronously. Structured output uses <code>schemaType: manual</code> with JSON Schema
+      constraints and an autoFix model at temp 0 to enforce reliable output format.
+    </div>
+    <div class="hitl-note">
+      <strong>Human-in-the-loop guarantee.</strong> Every agent output goes to Telegram for review before reaching a client.
+      No automated emails, no auto-sent proposals. The system drafts — the team decides.
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="section">
+      <div class="section-title">Key Engineering Patterns</div>
+      <ul class="feature-list">
+        <li>Structured output + autoFix at temp 0</li>
+        <li>RAG via n8n Data Table (scope library)</li>
+        <li>Fire-and-forget sub-workflow trigger</li>
+        <li>Aggregate → Set for multi-source context</li>
+        <li>nodeJson() for cross-node field access</li>
+        <li>Optional-chaining for input normalization</li>
+        <li>Fan-out → Merge (3–4 inputs) pattern</li>
+        <li>Real-time weather API integration</li>
+      </ul>
+    </div>
+    <div class="section">
+      <div class="section-title">Tech Stack</div>
+      <table class="tech-table">
+        <thead><tr><th>Layer</th><th>Technology</th></tr></thead>
+        <tbody>
+          <tr><td>AI Model</td><td>Claude Sonnet 4.6</td></tr>
+          <tr><td>Orchestration</td><td>n8n Cloud</td></tr>
+          <tr><td>Database</td><td>Supabase (PostgreSQL)</td></tr>
+          <tr><td>Project Data</td><td>Airtable</td></tr>
+          <tr><td>Notifications</td><td>Telegram Bot API</td></tr>
+          <tr><td>Lead Intake</td><td>Google Forms + Sheets</td></tr>
+          <tr><td>Weather</td><td>Open-Meteo API</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Roadmap — Agents 3 & 4</div>
+    <div class="two-col" style="margin-bottom: 0;">
+      <div class="roadmap-col">
+        <div class="roadmap-title">Agent 3 — Post-Sales Operations</div>
+        <ul>
+          <li>Draft client status updates from project data</li>
+          <li>Generate supplier purchase orders</li>
+          <li>Respond to council RFI requests</li>
+          <li>Create Xero invoice skeletons for PM approval</li>
+          <li>Draft Mastt variation requests</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <div class="roadmap-title">Agent 4 — PM Daily Brief</div>
+        <ul>
+          <li>Morning digest of all active projects</li>
+          <li>Flag missed variation claims before time expires</li>
+          <li>Alert on milestone billing opportunities</li>
+          <li>Weather impact assessment for site schedules</li>
+          <li>Pilot: Wellington Ferry Terminal project</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Dia Kurnia Dewi · AI & Automation Engineering Portfolio</span>
+    <a href="https://github.com/diakurnia/n8n-claude-agents" target="_blank">github.com/diakurnia/n8n-claude-agents</a>
+  </div>
+
+</body>
+</html>
