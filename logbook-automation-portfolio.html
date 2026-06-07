@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logbook Automation — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1E2235;
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 48px 56px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .header { border-bottom: 2px solid #1E2235; padding-bottom: 20px; margin-bottom: 28px; }
+    .header-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5B7CFA; margin-bottom: 8px; }
+    .header h1 { font-size: 26px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+    .header-sub { font-size: 13px; color: #6B7280; max-width: 560px; }
+    .header-meta { display: flex; gap: 20px; margin-top: 14px; flex-wrap: wrap; }
+    .meta-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #6B7280; }
+    .meta-item strong { color: #1E2235; font-weight: 600; }
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { font-size: 10px; font-weight: 600; background: #EEF2FF; color: #4F6EF7; padding: 3px 10px; border-radius: 20px; }
+    .section { margin-bottom: 28px; }
+    .section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5B7CFA; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #E8EAF0; }
+    .overview p { color: #374151; line-height: 1.8; margin-bottom: 10px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .feature-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: #374151; }
+    .feature-list li::before { content: '✓'; color: #5B7CFA; font-weight: 700; font-size: 11px; margin-top: 2px; flex-shrink: 0; }
+    .workflow { display: flex; flex-direction: column; gap: 0; }
+    .workflow-step { display: flex; gap: 14px; align-items: flex-start; position: relative; padding-bottom: 14px; }
+    .workflow-step:last-child { padding-bottom: 0; }
+    .step-num { width: 22px; height: 22px; border-radius: 50%; background: #5B7CFA; color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .workflow-step:not(:last-child) .step-num::after { content: ''; position: absolute; left: 10px; top: 24px; bottom: 0; width: 1.5px; background: #E8EAF0; }
+    .step-content strong { display: block; font-size: 12.5px; font-weight: 600; color: #1E2235; margin-bottom: 2px; }
+    .step-content span { font-size: 12px; color: #6B7280; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat-card { background: #F8F9FC; border: 1px solid #E8EAF0; border-radius: 8px; padding: 12px 14px; text-align: center; }
+    .stat-card .value { font-size: 20px; font-weight: 700; color: #5B7CFA; }
+    .stat-card .label { font-size: 10.5px; color: #6B7280; margin-top: 3px; line-height: 1.4; }
+    .tech-table, .compare-table, .cost-table { width: 100%; border-collapse: collapse; }
+    .tech-table th, .compare-table th, .cost-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #9CA3AF; padding: 6px 10px; background: #F8F9FC; border: 1px solid #E8EAF0; }
+    .tech-table td, .compare-table td, .cost-table td { padding: 8px 10px; font-size: 12px; color: #374151; border: 1px solid #E8EAF0; vertical-align: top; }
+    .tech-table td:first-child { font-weight: 600; color: #1E2235; width: 140px; }
+    .compare-table td:first-child { font-weight: 600; color: #1E2235; }
+    .compare-table tr:last-child td { font-weight: 700; color: #1E2235; background: #F8F9FC; }
+    .compare-table td:nth-child(2) { color: #DC2626; }
+    .compare-table td:nth-child(3) { color: #16A34A; }
+    .cost-table td:nth-child(2) { color: #16A34A; font-weight: 600; }
+    .arch-note { background: #F0F9FF; border-left: 3px solid #0284C7; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 12.5px; color: #374151; }
+    .arch-note strong { color: #0284C7; }
+    .cta-note { background: #1E2235; color: #fff; border-radius: 8px; padding: 20px 24px; text-align: center; }
+    .cta-note h3 { font-size: 14px; margin-bottom: 8px; }
+    .cta-note p { font-size: 12px; color: #C4C9D4; margin-bottom: 10px; }
+    .cta-note a { color: #8FA3FF; font-weight: 600; text-decoration: none; }
+    .footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid #E8EAF0; display: flex; justify-content: space-between; align-items: center; }
+    .footer span { font-size: 11px; color: #9CA3AF; }
+    .footer a { font-size: 11px; color: #5B7CFA; text-decoration: none; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-tag">Portfolio · AI & Automation Engineering</div>
+    <h1>Logbook Automation via Telegram Bot</h1>
+    <p class="header-sub">
+      An efficient, organized system for activity documentation — turning a 20-minute manual chore
+      into a 2-minute guided conversation in Telegram.
+    </p>
+    <div class="header-meta">
+      <div class="meta-item"><strong>Platform:</strong> n8n + Telegram</div>
+      <div class="meta-item"><strong>Status:</strong> Live</div>
+      <div class="meta-item"><strong>Cost:</strong> $0 extra tools</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag">n8n</span>
+      <span class="tag">Telegram Bot API</span>
+      <span class="tag">Google Drive</span>
+      <span class="tag">Google Sheets</span>
+      <span class="tag">Gmail</span>
+      <span class="tag">Google Gemini</span>
+    </div>
+  </div>
+
+  <div class="section overview">
+    <div class="section-title">Overview</div>
+    <p>
+      Documenting activities manually takes up far more time than most people realize: opening Drive to
+      create folders, uploading photos one by one, reading and summarizing documents by hand, filling in
+      Sheets row by row, then sending a confirmation email. Add it up and it's 15–20 minutes per activity —
+      over 3 hours a month for just 10 entries.
+    </p>
+    <p>
+      This system replaces that entire process with one short conversation in Telegram. Answer a few
+      guided questions, send your photos and documents, and within seconds everything is stored in Drive,
+      summarized by AI, logged to Sheets, and confirmed by email — automatically.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Key Metrics</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="value">80%</div>
+        <div class="label">Time saved per activity entry</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">$0</div>
+        <div class="label">Extra cost for tools and licenses</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">5 Systems</div>
+        <div class="label">Auto-integrated, no manual input needed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">How It Works</div>
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Type "hi" in Telegram</strong>
+          <span>The bot guides the user through the data entry step by step — Date, Activity Code, Activity Name, PIC.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Send photos and documents</strong>
+          <span>Activity photos, attendance photos, and PDF/Docs are received and uploaded automatically to a dedicated Google Drive subfolder.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>AI summarizes the documents</strong>
+          <span>PDF documents are analyzed by Gemini and summarized in 3–5 sentences, focused on decisions and follow-up actions.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Logged to Google Sheets</strong>
+          <span>The complete record — including the Drive folder link and documentation status checkmarks — is logged automatically.</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Confirmation email sent</strong>
+          <span>An email lands in the inbox with all the details of the entry just saved — useful as an audit trail.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Time Comparison per Activity</div>
+    <table class="compare-table">
+      <thead><tr><th>Task</th><th>Manual</th><th>With This System</th></tr></thead>
+      <tbody>
+        <tr><td>Create folder and upload files</td><td>5 min</td><td>0 sec (automatic)</td></tr>
+        <tr><td>Summarize PDF document</td><td>10 min</td><td>15 sec (AI)</td></tr>
+        <tr><td>Fill in Google Sheets</td><td>3 min</td><td>0 sec (automatic)</td></tr>
+        <tr><td>Send confirmation email</td><td>2 min</td><td>0 sec (automatic)</td></tr>
+        <tr><td>Total per activity</td><td>20 min</td><td>2 min</td></tr>
+      </tbody>
+    </table>
+    <div class="arch-note" style="margin-top: 12px;">
+      <strong>~3 hours saved every month.</strong> Assuming 10 activities per month, this system saves
+      roughly 3 hours of work from documentation alone — with zero extra tools to pay for.
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="section">
+      <div class="section-title">What You Get — Operationally</div>
+      <ul class="feature-list">
+        <li>Activity documentation organized neatly in Drive, no manual folder creation</li>
+        <li>Auto-populated Sheets with photo and document status per activity</li>
+        <li>AI-generated summaries — no need to re-read files for reports</li>
+        <li>Email confirmation for every saved entry, useful as an audit trail</li>
+      </ul>
+    </div>
+    <div class="section">
+      <div class="section-title">What You Get — For the Business</div>
+      <ul class="feature-list">
+        <li>Reduces admin workload without hiring extra staff</li>
+        <li>Adaptable to other activity categories without rebuilding</li>
+        <li>No dependency on paid tools requiring per-user licenses</li>
+        <li>Runs 24 hours a day — no one needs to be on standby</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Cost Breakdown</div>
+    <table class="cost-table">
+      <thead><tr><th>Component</th><th>Cost</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Telegram Bot</td><td>Free</td><td>No API fees</td></tr>
+        <tr><td>Google Drive and Sheets</td><td>Free</td><td>Included with Google account</td></tr>
+        <tr><td>Gmail</td><td>Free</td><td>Included with Google account</td></tr>
+        <tr><td>AI Summarizer (Gemini)</td><td>Free</td><td>Free tier is sufficient</td></tr>
+        <tr><td>n8n (automation engine)</td><td>From $20/mo</td><td>Can be self-hosted for free</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Tech Stack</div>
+    <table class="tech-table">
+      <thead><tr><th>Layer</th><th>Technology</th></tr></thead>
+      <tbody>
+        <tr><td>Orchestration</td><td>n8n</td></tr>
+        <tr><td>Interface</td><td>Telegram Bot API</td></tr>
+        <tr><td>File Storage</td><td>Google Drive</td></tr>
+        <tr><td>Data Logging</td><td>Google Sheets</td></tr>
+        <tr><td>AI Summarization</td><td>Google Gemini</td></tr>
+        <tr><td>Notifications</td><td>Gmail</td></tr>
+        <tr><td>Session State</td><td>n8n Data Tables (keyed by chat_id)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="cta-note">
+      <h3>Interested in building something similar for your team?</h3>
+      <p>This system was built around a specific workflow and can be adapted to fit yours.<br>No two organizations work the same way. Let's talk about what makes sense for you.</p>
+      <a href="mailto:diakurnia20@gmail.com">diakurnia20@gmail.com</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Dia Kurnia Dewi · AI & Automation Engineering Portfolio</span>
+    <a href="https://github.com/diakurnia/logbook-automation" target="_blank">github.com/diakurnia/logbook-automation</a>
+  </div>
+
+</body>
+</html>
